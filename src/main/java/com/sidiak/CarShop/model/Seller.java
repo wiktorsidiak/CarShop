@@ -3,6 +3,7 @@ package com.sidiak.CarShop.model;
 import javax.persistence.*;
 
 import java.util.List;
+import java.util.Objects;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -33,5 +34,23 @@ public class Seller extends User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Seller seller = (Seller) o;
+        return Objects.equals(firstName, seller.firstName) &&
+                Objects.equals(lastName, seller.lastName) &&
+                Objects.equals(phoneNumber, seller.phoneNumber) &&
+                Objects.equals(user, seller.user) &&
+                Objects.equals(cars, seller.cars);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), firstName, lastName, phoneNumber, user, cars);
     }
 }

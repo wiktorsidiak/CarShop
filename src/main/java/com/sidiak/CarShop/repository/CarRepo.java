@@ -1,6 +1,6 @@
 package com.sidiak.CarShop.repository;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 import com.sidiak.CarShop.model.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,19 +9,21 @@ import org.springframework.data.repository.RepositoryDefinition;
 @RepositoryDefinition(domainClass = Car.class, idClass = String.class)
 public interface CarRepo extends JpaRepository<Car, Long> {
 
+    List<Car> findAll();
+
     Car save(Car car);
 
-    Car findByMark(String mark);
+    Car findByMark(Car mark);
 
-    Car findByModel(String model);
+    Car findByModel(Car model);
 
-    Car findByPrice(BigDecimal price);
+    Car findByPrice(Car price);
 
-    Car findByFuel(String fuel);
+    Car findByFuel(Car fuel);
 
-    Car findByMileage(Integer mileage);
+    Car findByMileage(Car mileage);
 
-    Car findByYear(Integer year);
+    Car findByYear(Car year);
 
-    void delete(Long id);
+    void delete(Car carId);
 }

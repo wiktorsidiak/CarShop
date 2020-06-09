@@ -13,11 +13,10 @@ import lombok.Setter;
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = {"username", "email"}))
 @Getter
 @Setter
-
 public class User {
     @NotNull
     @Column(name = "user_id")
-    UUID userId;
+    Long userId;
     @NotNull
     @Column(name = "username")
     private String username;
@@ -37,7 +36,7 @@ public class User {
     public User(String username, String email, String password, boolean isActive) {
     }
 
-    public User(UUID userId, String username, String email, String password, boolean isActive) {
+    public User(Long userId, String username, String email, String password, boolean isActive) {
         this.userId = userId;
         this.username = username;
         this.email = email;

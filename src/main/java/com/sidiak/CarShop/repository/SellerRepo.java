@@ -1,14 +1,15 @@
 package com.sidiak.CarShop.repository;
 
-import java.util.UUID;
+import java.util.List;
 
 import com.sidiak.CarShop.model.Seller;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface SellerRepo extends JpaRepository<Seller, UUID> {
-    Seller save();
+@Repository
+public interface SellerRepo extends JpaRepository<Seller, Long> {
 
-    Seller update();
+    List<Seller> findAll(Long id);
 
-    Seller delete();
+    Seller findByFirstName(String firstName);
 }
