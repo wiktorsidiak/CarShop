@@ -1,13 +1,10 @@
 package com.sidiak.CarShop.service;
 
-import java.util.List;
-
 import com.sidiak.CarShop.model.Car;
-import com.sidiak.CarShop.model.CarCategory;
-import com.sidiak.CarShop.repository.CarCategoryRepo;
-import com.sidiak.CarShop.repository.CarRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.sidiak.CarShop.model.CarCategoryModel;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public interface CarService {
@@ -22,7 +19,7 @@ public interface CarService {
 
     Car getCarsByModel(Car model);
 
-    CarCategory getCarsByCategory(Car category);
+    CarCategoryModel getCarsByCategory(Car category);
 
     Car getCarsByPrice(Car price);
 

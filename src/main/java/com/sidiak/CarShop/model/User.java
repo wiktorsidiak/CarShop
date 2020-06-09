@@ -10,13 +10,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = {"username", "email"}))
+@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = { "username", "email" }))
 @Getter
 @Setter
 public class User {
     @NotNull
     @Column(name = "user_id")
-    Long userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    private Long userId;
     @NotNull
     @Column(name = "username")
     private String username;

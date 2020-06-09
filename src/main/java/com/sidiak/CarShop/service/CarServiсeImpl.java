@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sidiak.CarShop.model.Car;
 import com.sidiak.CarShop.model.CarCategory;
+import com.sidiak.CarShop.model.CarCategoryModel;
 import com.sidiak.CarShop.repository.CarCategoryRepo;
 import com.sidiak.CarShop.repository.CarRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,8 @@ public class CarServiсeImpl implements CarService {
     }
 
     @Override
-    public CarCategory getCarsByCategory(Car category) {
-        return carCategoryRepo.findByCategory(category);
+    public CarCategoryModel getCarsByCategory(Car category) {
+        return carCategoryRepo.findByCategory(category.getCategory());
     }
 
     @Override
