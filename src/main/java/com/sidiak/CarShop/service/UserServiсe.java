@@ -7,6 +7,10 @@ public interface UserServiсe extends UserDetailsService {
 
     User saveUser(User user);
 
+    User getUserName(String username);
+
+    User getUserPassword(String password);
+
     void deleteUser(User userId);
 
     User findByUsername(String username);

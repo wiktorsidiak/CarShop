@@ -1,9 +1,9 @@
 package com.sidiak.CarShop.model;
 
 import javax.persistence.*;
-
+import javax.validation.*;
+import javax.validation.constraints.Size;
 import java.util.Objects;
-import java.util.UUID;
 
 import com.sun.istack.NotNull;
 import lombok.Getter;
@@ -18,11 +18,13 @@ public class User {
     @Column(name = "user_id")
     Long userId;
     @NotNull
+    @Size(min = 4, max = 12)
     @Column(name = "username")
     private String username;
     @Column(name = "email")
     private String email;
 
+    @Size(min = 8, max = 16)
     @Column(name = "password")
     private String password;
     @Column(name = "is_active")
@@ -33,7 +35,7 @@ public class User {
 
 
 
-    public User(String username, String email, String password, boolean isActive) {
+    public User() {
     }
 
     public User(Long userId, String username, String email, String password, boolean isActive) {

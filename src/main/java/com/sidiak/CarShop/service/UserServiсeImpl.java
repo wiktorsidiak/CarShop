@@ -18,17 +18,27 @@ public class UserServiсeImpl implements UserServiсe {
     }
 
     @Override
+    public User getUserName(String username) {
+        return userRepo.findUsername(username);
+    }
+
+    @Override
+    public User getUserPassword(String password) {
+        return userRepo.findPassword(password);
+    }
+
+    @Override
     public void deleteUser(User userId) {
         userRepo.delete(userId);
     }
 
     @Override
     public User findByUsername(String username) {
-        return null;
+        return userRepo.findByUsername(username);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return null;
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepo.findByUsername(username);
     }
 }
