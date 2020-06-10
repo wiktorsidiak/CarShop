@@ -1,22 +1,23 @@
 package com.sidiak.CarShop.controller;
 
-
-import com.sidiak.CarShop.service.CarService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import com.sidiak.CarShop.finder.CarData;
+import com.sidiak.CarShop.finder.CarFinder;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/cars")
+@RequiredArgsConstructor
 public class CarController {
-    @Autowired
-    CarService carService;
 
-    public CarController(CarService carService){
-        this.carService = carService;
+    private final CarFinder carFinder;
 
+    @GetMapping
+    public Page<CarData> listCars(Pageable pageable) {
+        return carFinder.findAll(pageable);
     }
-    public listCars(Model model, @RequestParam(value = "page", defaultValue = "1") int page,)
 }

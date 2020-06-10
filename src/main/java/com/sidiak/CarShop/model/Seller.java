@@ -1,17 +1,28 @@
 package com.sidiak.CarShop.model;
 
-import javax.persistence.*;
-
-import java.util.List;
-import java.util.Objects;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
 @Setter
-public class Seller extends User {
+public class Seller {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -29,8 +40,7 @@ public class Seller extends User {
     @OneToMany(mappedBy = "seller", targetEntity = Car.class, cascade = CascadeType.ALL)
     private List<Car> cars;
 
-    public Seller(String username, String email, String password, boolean isActive, String firstName, String lastName, String phoneNumber) {
-        super(username, email, password, isActive);
+    public Seller(String firstName, String lastName, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
