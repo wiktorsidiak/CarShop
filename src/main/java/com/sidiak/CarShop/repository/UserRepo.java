@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.RepositoryDefinition;
 
 @RepositoryDefinition(domainClass = User.class, idClass = String.class)
-public interface UserRepo extends JpaRepository<User, String> {
+public interface UserRepo extends JpaRepository<User, Long> {
 
     User save(User user);
 

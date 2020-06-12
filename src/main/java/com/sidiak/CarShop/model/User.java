@@ -1,19 +1,21 @@
 package com.sidiak.CarShop.model;
 
 import javax.persistence.*;
-import javax.validation.*;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Objects;
 
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = { "username", "email" }))
 @Getter
 @Setter
-public class User {
+public class User implements UserDetails {
     @NotNull
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +31,6 @@ public class User {
     @Size(min = 8, max = 16)
     @Column(name = "password")
     private String password;
-    @Column(name = "is_active")
-    private boolean isActive;
-
     @OneToOne(optional = false, mappedBy = "user", targetEntity = Seller.class)
     private Seller seller;
 
@@ -40,23 +39,21 @@ public class User {
     public User() {
     }
 
-    public User(Long userId, String username, String email, String password, boolean isActive) {
-        this.userId = userId;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.isActive = isActive;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "user_id=" + userId +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", is_ctive=" + isActive +
+                ", password='" + password + '\'' + +
                 '}';
+    }
+
+    public User(Long userId, String username, String email, String password) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
     @Override
@@ -72,6 +69,31 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(username, email, password);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
     }
 }
 

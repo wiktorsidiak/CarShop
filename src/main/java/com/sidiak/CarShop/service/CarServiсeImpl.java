@@ -3,16 +3,20 @@ package com.sidiak.CarShop.service;
 import java.util.List;
 
 import com.sidiak.CarShop.model.Car;
-import com.sidiak.CarShop.model.CarCategory;
 import com.sidiak.CarShop.model.CarCategoryModel;
 import com.sidiak.CarShop.repository.CarCategoryRepo;
 import com.sidiak.CarShop.repository.CarRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CarServiсeImpl implements CarService {
 
+    @Autowired
     private CarRepo carRepo;
+    @Autowired
     private CarCategoryRepo carCategoryRepo;
+
     @Override
     public Car save(Car car) {
         Car newCar = carRepo.save(car);
