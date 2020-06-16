@@ -20,7 +20,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
         protected void configure(HttpSecurity http) throws Exception {
             http
                     .authorizeRequests()
-                        .antMatchers("/", "/registration").permitAll()
+                        .antMatchers("/", "/registration", "/login").permitAll()
                         .anyRequest().authenticated()
                     .and()
                         .formLogin()
@@ -36,7 +36,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("select username, password from  user where username = ?");
+                .usersByUsernameQuery("select username from  user where username = ?");
 
     }
 }
