@@ -7,13 +7,5 @@ import org.springframework.data.repository.RepositoryDefinition;
 @RepositoryDefinition(domainClass = User.class, idClass = String.class)
 public interface UserRepo extends JpaRepository<User, Long> {
 
-    User save(User user);
-
-    void delete(User user);
-
-    User findUsername(String username);
-
-    User findPassword(String password);
-
     User findByUsername(String username);
 }
