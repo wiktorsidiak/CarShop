@@ -6,7 +6,7 @@ import com.sidiak.CarShop.model.Car;
 import com.sidiak.CarShop.model.CarCategoryModel;
 import org.springframework.stereotype.Service;
 
-@Service
+
 public interface CarService {
 
     Car save(Car car);
