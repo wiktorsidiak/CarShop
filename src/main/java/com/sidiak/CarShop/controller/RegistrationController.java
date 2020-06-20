@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import java.util.Map;
 
+import com.sidiak.CarShop.dto.UserRegistrationFormDTO;
 import com.sidiak.CarShop.model.User;
 import com.sidiak.CarShop.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,12 @@ public class RegistrationController {
     @Autowired
     private UserRepo userRepo;
 
+
+
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("user", new User());
+
 
         return "regitration";
     }
