@@ -1,5 +1,6 @@
 package com.sidiak.CarShop.model;
 
+import com.sidiak.CarShop.model.Car.Car;
 import lombok.Getter;
 import lombok.Setter;
 

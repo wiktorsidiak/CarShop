@@ -1,4 +1,4 @@
-package com.sidiak.CarShop.service;
+package com.sidiak.CarShop.service.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

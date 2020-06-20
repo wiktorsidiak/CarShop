@@ -1,7 +1,7 @@
 package com.sidiak.CarShop.repository;
 
-import com.sidiak.CarShop.model.Car;
-import com.sidiak.CarShop.model.CarCategoryModel;
+import com.sidiak.CarShop.model.Car.Car;
+import com.sidiak.CarShop.model.Car.CarCategoryModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

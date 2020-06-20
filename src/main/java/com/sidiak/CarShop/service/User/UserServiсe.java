@@ -1,4 +1,4 @@
-package com.sidiak.CarShop.service;
+package com.sidiak.CarShop.service.User;
 
 import com.sidiak.CarShop.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;

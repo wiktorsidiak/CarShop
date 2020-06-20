@@ -1,4 +1,4 @@
-package com.sidiak.CarShop.model;
+package com.sidiak.CarShop.model.Car;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 
+import com.sidiak.CarShop.model.Seller;
 import lombok.Getter;
 import lombok.Setter;
 

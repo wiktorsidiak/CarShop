@@ -1,6 +1,6 @@
 package com.sidiak.CarShop.utils;
 
-import com.sidiak.CarShop.model.Car;
+import com.sidiak.CarShop.model.Car.Car;
 import com.sidiak.CarShop.model.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

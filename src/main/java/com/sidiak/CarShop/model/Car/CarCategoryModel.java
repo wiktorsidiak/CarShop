@@ -1,4 +1,4 @@
-package com.sidiak.CarShop.model;
+package com.sidiak.CarShop.model.Car;
 
 public interface CarCategoryModel {
 	String getCategory();

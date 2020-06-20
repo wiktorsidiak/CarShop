@@ -2,7 +2,7 @@ package com.sidiak.CarShop.repository;
 
 import java.util.List;
 
-import com.sidiak.CarShop.model.Car;
+import com.sidiak.CarShop.model.Car.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.RepositoryDefinition;
 

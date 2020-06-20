@@ -1,4 +1,4 @@
-package com.sidiak.CarShop.service;
+package com.sidiak.CarShop.service.Seller;
 
 import java.util.List;
 

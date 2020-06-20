@@ -1,6 +1,6 @@
 package com.sidiak.CarShop.finder;
 
-import com.sidiak.CarShop.model.Car;
+import com.sidiak.CarShop.model.Car.Car;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.RepositoryDefinition;

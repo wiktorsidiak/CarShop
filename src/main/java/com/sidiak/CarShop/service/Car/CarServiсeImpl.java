@@ -1,9 +1,9 @@
-package com.sidiak.CarShop.service;
+package com.sidiak.CarShop.service.Car;
 
 import java.util.List;
 
-import com.sidiak.CarShop.model.Car;
-import com.sidiak.CarShop.model.CarCategoryModel;
+import com.sidiak.CarShop.model.Car.Car;
+import com.sidiak.CarShop.model.Car.CarCategoryModel;
 import com.sidiak.CarShop.repository.CarCategoryRepo;
 import com.sidiak.CarShop.repository.CarRepo;
 import org.springframework.beans.factory.annotation.Autowired;

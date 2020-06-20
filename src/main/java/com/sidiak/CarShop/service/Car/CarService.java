@@ -1,10 +1,9 @@
-package com.sidiak.CarShop.service;
+package com.sidiak.CarShop.service.Car;
 
 import java.util.List;
 
-import com.sidiak.CarShop.model.Car;
-import com.sidiak.CarShop.model.CarCategoryModel;
-import org.springframework.stereotype.Service;
+import com.sidiak.CarShop.model.Car.Car;
+import com.sidiak.CarShop.model.Car.CarCategoryModel;
 
 
 public interface CarService {
