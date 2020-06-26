@@ -21,20 +21,24 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long userId;
+
     @NotNull
     @Size(min = 4, max = 12)
     @Column(name = "username")
     private String username;
+
     @Column(name = "email")
     private String email;
 
     @Size(min = 8, max = 16)
     @Column(name = "password")
     private String password;
+
     @OneToOne(optional = false, mappedBy = "user")
     private Seller seller;
 
-
+    @ManyToMany
+    private Collection<Role> roles;
 
     public User() {
     }
@@ -45,15 +49,17 @@ public class User implements UserDetails {
                 "user_id=" + userId +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' + +
+                ", password='" + password + '\'' +
+                ", role='" + roles + '\'' +
                 '}';
     }
 
-    public User(Long userId, String username, String email, String password) {
+    public User(Long userId, String username, String email, String password, Collection<Role> roles) {
         this.userId = userId;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.roles = roles;
     }
 
     @Override
@@ -96,6 +102,5 @@ public class User implements UserDetails {
         return false;
     }
 }
-
 
 

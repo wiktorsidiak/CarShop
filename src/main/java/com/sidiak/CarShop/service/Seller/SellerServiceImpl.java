@@ -18,8 +18,5 @@ public class SellerServiceImpl implements SellerServiсe {
     return sellerRepo.findAll();
     }
 
-    @Override
-    public Seller findByFirstName(String firstName) {
-        return sellerRepo.findByFirstName(firstName);
-    }
+
 }
