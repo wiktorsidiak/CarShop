@@ -43,22 +43,28 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
                     .clearAuthentication(true)
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/login?logout")
-                        .permitAll();
+                        .permitAll()
+                        .and()
+                        .httpBasic();
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
+    protected void configure(AuthenticationManagerBuilder auth)throws Exception {
+            auth
+                    .jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+                    .dataSource(dataSource)
+                    .usersByUsernameQuery("select username, password, enabled from users where username=?")
+                    .authoritiesByUsernameQuery("select username, role from users where username=?");
     }
         @Bean
-    BCryptPasswordEncoder encoder() {
+    BCryptPasswordEncoder passwordEncoder() {
             return new BCryptPasswordEncoder();
         }
         @Bean
             public DaoAuthenticationProvider authenticationProvider(){
             DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
             auth.setUserDetailsService(userServiсe);
-            auth.setPasswordEncoder(encoder());
+            auth.setPasswordEncoder(passwordEncoder());
             return auth;
         }
     }

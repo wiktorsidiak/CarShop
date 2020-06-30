@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import java.util.List;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -39,12 +39,13 @@ public class Seller {
     private User user;
 
     @OneToMany(mappedBy = "seller", targetEntity = Car.class, cascade = CascadeType.ALL)
-    private List<Car> cars;
+    private Collection<Car> cars;
 
-    public Seller(String firstName, String lastName, String phoneNumber) {
+    public Seller(String firstName, String lastName, String phoneNumber, Collection<Car> cars) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+        this.cars = cars;
     }
 
     @Override

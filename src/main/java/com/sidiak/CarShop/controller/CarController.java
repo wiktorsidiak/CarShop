@@ -20,4 +20,5 @@ public class CarController {
     public Page<CarData> listCars(Pageable pageable) {
         return carFinder.findAll(pageable);
     }
+
 }
