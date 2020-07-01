@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CarCategoryRepo extends JpaRepository<Car, String> {
-    CarCategoryModel findByCategory(final String category);
+	CarCategoryModel findByCategory(final String category);
 }

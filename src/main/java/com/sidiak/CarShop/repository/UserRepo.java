@@ -7,7 +7,7 @@ import org.springframework.data.repository.RepositoryDefinition;
 @RepositoryDefinition(domainClass = User.class, idClass = String.class)
 public interface UserRepo extends JpaRepository<User, Long> {
 
-    User findByUsername(String username);
+	User findByUsername(String username);
 
-    User findByEmail(String email);
+	User findByEmail(String email);
 }

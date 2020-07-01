@@ -1,13 +1,11 @@
 package com.sidiak.CarShop.service.Seller;
 
-import java.util.List;
-
 import com.sidiak.CarShop.model.Seller;
+
+import java.util.List;
 
 public interface SellerServiсe {
 
-    List<Seller> getAll(Seller seller);
-
-
+	List<Seller> getAll(Seller seller);
 
 }

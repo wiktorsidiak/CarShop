@@ -21,48 +21,51 @@ import java.util.Objects;
 @Setter
 public class Seller {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+	@Column(name = "first_name")
+	private String firstName;
 
-    @Column(name = "last_name")
-    private String lastName;
+	@Column(name = "last_name")
+	private String lastName;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
+	@Column(name = "phone_number")
+	private String phoneNumber;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "user_id")
-    private User user;
+	@OneToOne(optional = false)
+	@JoinColumn(name = "user_id")
+	private User user;
 
-    @OneToMany(mappedBy = "seller", targetEntity = Car.class, cascade = CascadeType.ALL)
-    private Collection<Car> cars;
+	@OneToMany(mappedBy = "seller", targetEntity = Car.class, cascade = CascadeType.ALL)
+	private Collection<Car> cars;
 
-    public Seller(String firstName, String lastName, String phoneNumber, Collection<Car> cars) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.cars = cars;
-    }
+	public Seller(String firstName, String lastName, String phoneNumber, Collection<Car> cars) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.cars = cars;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Seller seller = (Seller) o;
-        return Objects.equals(firstName, seller.firstName) &&
-                Objects.equals(lastName, seller.lastName) &&
-                Objects.equals(phoneNumber, seller.phoneNumber) &&
-                Objects.equals(user, seller.user) &&
-                Objects.equals(cars, seller.cars);
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		if (!super.equals(o))
+			return false;
+		Seller seller = (Seller) o;
+		return Objects.equals(firstName, seller.firstName) &&
+				Objects.equals(lastName, seller.lastName) &&
+				Objects.equals(phoneNumber, seller.phoneNumber) &&
+				Objects.equals(user, seller.user) &&
+				Objects.equals(cars, seller.cars);
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), firstName, lastName, phoneNumber, user, cars);
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(super.hashCode(), firstName, lastName, phoneNumber, user, cars);
+	}
 }

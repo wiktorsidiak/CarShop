@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CarController {
 
-    private final CarFinder carFinder;
+	private final CarFinder carFinder;
 
-    @GetMapping
-    public Page<CarData> listCars(Pageable pageable) {
-        return carFinder.findAll(pageable);
-    }
+	@GetMapping
+	public Page<CarData> listCars(Pageable pageable) {
+		return carFinder.findAll(pageable);
+	}
 
 }
