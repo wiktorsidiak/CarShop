@@ -1,7 +1,7 @@
 package com.sidiak.CarShop.service.User;
 
-import com.sidiak.CarShop.model.Role;
-import com.sidiak.CarShop.model.User;
+import com.sidiak.CarShop.model.User.User;
+import com.sidiak.CarShop.model.User.UserRole;
 import com.sidiak.CarShop.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -60,7 +60,7 @@ public class UserServiсeImpl implements UserServiсe {
 		if (user == null)
 			throw new UsernameNotFoundException(username);
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		for (Role role : user.getRoles()) {
+		for (UserRole role: user.getRoles()){
 			grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
 		}
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);

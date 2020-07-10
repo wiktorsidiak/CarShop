@@ -1,23 +1,18 @@
-package com.sidiak.CarShop.model;
+package com.sidiak.CarShop.model.User;
 
+
+import com.sidiak.CarShop.model.Seller;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "appuser", uniqueConstraints = @UniqueConstraint(columnNames = { "username", "email" }))
@@ -46,12 +41,13 @@ public class User implements UserDetails {
 	private Seller seller;
 
 	@ManyToMany
-	private Collection<Role> roles;
+	@Column(name = "roles")
+	private Set<UserRole> roles;
 
 	public User() {
 	}
 
-	public User(Long userId, String username, String email, String password, Collection<Role> roles) {
+	public User(Long userId, String username, String email, String password, Set<UserRole> roles) {
 		this.userId = userId;
 		this.username = username;
 		this.email = email;
@@ -66,7 +62,7 @@ public class User implements UserDetails {
 				", username='" + username + '\'' +
 				", email='" + email + '\'' +
 				", password='" + password + '\'' +
-				", role='" + roles + '\'' +
+				", roles='" + roles + '\'' +
 				'}';
 	}
 
@@ -94,7 +90,7 @@ public class User implements UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -104,12 +100,12 @@ public class User implements UserDetails {
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return false;
+		return true;
 	}
 }
 

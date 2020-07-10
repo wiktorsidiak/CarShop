@@ -1,6 +1,6 @@
 package com.sidiak.CarShop.repository;
 
-import com.sidiak.CarShop.model.User;
+import com.sidiak.CarShop.model.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.RepositoryDefinition;
 

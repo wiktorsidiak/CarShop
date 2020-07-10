@@ -1,6 +1,6 @@
 package com.sidiak.CarShop.service.User;
 
-import com.sidiak.CarShop.model.User;
+import com.sidiak.CarShop.model.User.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserServiсe extends UserDetailsService {

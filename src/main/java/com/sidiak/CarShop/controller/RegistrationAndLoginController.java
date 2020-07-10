@@ -1,6 +1,6 @@
 package com.sidiak.CarShop.controller;
 
-import com.sidiak.CarShop.model.User;
+import com.sidiak.CarShop.model.User.User;
 import com.sidiak.CarShop.repository.UserRepo;
 import com.sidiak.CarShop.service.User.UserServiсe;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class RegistrationAndLoginController {
 	@GetMapping("/login")
 	public String login(Model model, String error, String logout) {
 		if (error != null)
-			model.addAttribute("error", "Your username and password is invalid.");
+			model.addAttribute("error", "Your username or password is invalid.");
 
 		if (logout != null)
 			model.addAttribute("message", "You have been logged out successfully.");

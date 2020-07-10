@@ -1,6 +1,7 @@
 package com.sidiak.CarShop.model;
 
 import com.sidiak.CarShop.model.Car.Car;
+import com.sidiak.CarShop.model.User.User;
 import lombok.Getter;
 import lombok.Setter;
 
