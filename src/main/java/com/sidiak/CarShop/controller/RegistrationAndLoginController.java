@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
@@ -30,7 +29,7 @@ public class RegistrationAndLoginController {
 	}
 
 	@PostMapping("/registration")
-	public String addUser(@ModelAttribute("user") @Valid User user, Map<String, Object> model) {
+	public String addUser(@ModelAttribute("user") User user, Map<String, Object> model) {
 		User userFromDB = userRepo.findByUsername(user.getUsername());
 		if (userFromDB != null) {
 			model.put("message", "user exists! Please Log In");
