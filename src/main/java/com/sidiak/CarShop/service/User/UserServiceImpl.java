@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class UserServiсeImpl implements UserServiсe {
+public class UserServiceImpl implements UserServiсe {
 
 	@Autowired
 	UserRepo userRepo;
@@ -24,7 +24,7 @@ public class UserServiсeImpl implements UserServiсe {
 	BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
-	public UserServiсeImpl(UserRepo userRepo, BCryptPasswordEncoder passwordEncoder) {
+	public UserServiceImpl(UserRepo userRepo, BCryptPasswordEncoder passwordEncoder) {
 
 		this.userRepo = userRepo;
 		this.passwordEncoder = passwordEncoder;
@@ -32,11 +32,8 @@ public class UserServiсeImpl implements UserServiсe {
 
 	@Override
 	public User saveUser(User user) {
-		User createdUser = new User();
-		user.setUsername(user.getUsername());
-		user.setEmail(user.getEmail());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		return userRepo.save(createdUser);
+		return userRepo.save(user);
 	}
 
 	@Override

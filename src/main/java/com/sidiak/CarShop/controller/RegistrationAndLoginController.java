@@ -16,7 +16,7 @@ import java.util.Map;
 @Controller
 public class RegistrationAndLoginController {
 	@Autowired
-	UserServiсe userServiсe;
+	UserServiсe userService;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	@Autowired
@@ -35,7 +35,7 @@ public class RegistrationAndLoginController {
 			model.put("message", "user exists! Please Log In");
 			return "redirect:/login";
 		} else {
-			userServiсe.saveUser(user);;
+			userService.saveUser(user);
 			return "redirect:/registration?success";
 		}
 	}
