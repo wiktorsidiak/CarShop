@@ -9,7 +9,7 @@ public interface CarService {
 
 	Car save(Car car);
 
-	List<Car> getAll(Car car);
+	List<Car> getAll();
 
 	Car getCarsByMark(Car mark);
 
