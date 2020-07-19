@@ -10,10 +10,8 @@ import com.sidiak.CarShop.service.Car.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,6 +27,7 @@ public class CarController {
 
 		return carFinder.findAll(pageable);
 	}
+
 //
 //	@RequestMapping(value = "/add")
 //	public String addCar(Model model) {
@@ -49,5 +48,4 @@ public class CarController {
 //	public String findByCarMark(Model model){
 //		carService.getCarsByMark();
 //
-//	}
 }

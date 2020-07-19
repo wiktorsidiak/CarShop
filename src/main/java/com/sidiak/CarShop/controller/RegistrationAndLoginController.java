@@ -35,6 +35,8 @@ public class RegistrationAndLoginController {
 			model.put("message", "user exists! Please Log In");
 			return "redirect:/login";
 		} else {
+
+			user.setEnabled(true);
 			userService.saveUser(user);
 			return "redirect:/registration?success";
 		}

@@ -2,7 +2,7 @@ package com.sidiak.CarShop.model.User;
 
 import javax.persistence.*;
 
-import java.util.Set;
+import java.util.Collection;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,12 +14,12 @@ import lombok.Setter;
 public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Long id;
 
+    @Column
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
 
     public UserRole(){
 
@@ -27,6 +27,14 @@ public class UserRole {
 
     public UserRole(String name) {
         this.name = name;
+
     }
 
+    @Override
+    public String toString() {
+        return "UserRole{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -20,7 +20,7 @@ import java.util.Set;
 @Setter
 public class User implements UserDetails {
 	@NotNull
-	@Column(name = "user_id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Long userId;
@@ -37,22 +37,33 @@ public class User implements UserDetails {
 	@Column(name = "password")
 	private String password;
 
+	@Column(name = "enabled")
+	private boolean isEnabled;
+
 	@OneToOne(optional = false, mappedBy = "user")
 	private Seller seller;
 
 	@ManyToMany
-	@Column(name = "roles")
-	private Set<UserRole> roles;
+	@ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
+	@CollectionTable(name = "appuser_role", joinColumns = @JoinColumn(name = "user_id"))
+	private Collection<UserRole> roles;
 
 	public User() {
 	}
 
-	public User(Long userId, String username, String email, String password, Set<UserRole> roles) {
-		this.userId = userId;
+	public User(String username, String password, Collection<UserRole> roles) {
+		this.username = username;
+		this.password = password;
+		this.roles = roles;
+	}
+
+	public User(String username, String email, String password, boolean isEnabled) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		this.roles = roles;
+		this.isEnabled = isEnabled;
+
+
 	}
 
 	@Override
@@ -61,6 +72,7 @@ public class User implements UserDetails {
 				"user_id=" + userId +
 				", username='" + username + '\'' +
 				", email='" + email + '\'' +
+				",isEnabled" + isEnabled + '\'' +
 				", password='" + password + '\'' +
 				", roles='" + roles + '\'' +
 				'}';

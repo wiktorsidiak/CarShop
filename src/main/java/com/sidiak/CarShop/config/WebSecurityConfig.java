@@ -27,8 +27,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
-				.antMatchers("/", "/registration", "/login").permitAll()
-				.anyRequest().authenticated()
+				.antMatchers("/edit/*", "/delete/*").hasRole("ADMIN")
+				.antMatchers("/edit/*", "/create/*").hasRole("USER")
+				.antMatchers("/", "/registration", "/login")
+				.permitAll()
+				.anyRequest()
+				.authenticated()
 				.and()
 				.formLogin()
 				.loginPage("/login")
@@ -43,17 +47,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/login?logout")
 				.permitAll()
 				.and()
+				.exceptionHandling().accessDeniedPage("/403")
+				.and()
 				.httpBasic();
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-				.jdbcAuthentication()
+		auth.jdbcAuthentication()
 				.passwordEncoder(passwordEncoder())
 				.dataSource(dataSource)
-				.usersByUsernameQuery("select username, password from appuser where username=?")
-				.authoritiesByUsernameQuery("select username, role from appuser where username=?");
+				.usersByUsernameQuery("SELECT username,password,enabled FROM appuser WHERE username = ?")
+				.authoritiesByUsernameQuery("SELECT appuser.username, role.name FROM appuser_role JOIN role ON role.id = appuser_role.roles_id JOIN appuser ON appuser.id = appuser_role.user_id WHERE appuser.username = ?");
+
 	}
 
 	@Bean
