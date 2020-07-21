@@ -5,12 +5,8 @@ import com.sidiak.CarShop.model.Seller;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,7 +14,7 @@ import java.util.Set;
 @Table(name = "appuser", uniqueConstraints = @UniqueConstraint(columnNames = { "username", "email" }))
 @Getter
 @Setter
-public class User implements UserDetails {
+public class User{
 	@NotNull
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,14 +40,15 @@ public class User implements UserDetails {
 	private Seller seller;
 
 	@ManyToMany
-	@ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
+	@ElementCollection(targetClass = UserRole.class, fetch = FetchType.LAZY)
 	@CollectionTable(name = "appuser_role", joinColumns = @JoinColumn(name = "user_id"))
-	private Collection<UserRole> roles;
+	@Column
+	private Set<UserRole> roles;
 
 	public User() {
 	}
 
-	public User(String username, String password, Collection<UserRole> roles) {
+	public User(String username, String password, Set<UserRole> roles) {
 		this.username = username;
 		this.password = password;
 		this.roles = roles;
@@ -62,8 +59,6 @@ public class User implements UserDetails {
 		this.email = email;
 		this.password = password;
 		this.isEnabled = isEnabled;
-
-
 	}
 
 	@Override
@@ -93,31 +88,6 @@ public class User implements UserDetails {
 	@Override
 	public int hashCode() {
 		return Objects.hash(username, email, password);
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return false;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
 	}
 }
 

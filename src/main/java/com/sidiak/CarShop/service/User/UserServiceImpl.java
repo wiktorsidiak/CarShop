@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -23,18 +24,26 @@ public class UserServiceImpl implements UserServiсe {
 	UserRepo userRepo;
 
 	@Autowired
+	UserRoleRepo userRoleRepo;
+
+	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
 	public UserServiceImpl(UserRepo userRepo, BCryptPasswordEncoder passwordEncoder) {
-
 		this.userRepo = userRepo;
 		this.passwordEncoder = passwordEncoder;
+
 	}
 
 	@Override
 	public User saveUser(User user) {
+		user.setEmail(user.getEmail());
+		user.setUsername(user.getUsername());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setEnabled(true);
+		user.setRoles(new HashSet<>(userRoleRepo.findAll()));
+
 		return userRepo.save(user);
 	}
 
@@ -54,13 +63,14 @@ public class UserServiceImpl implements UserServiсe {
 	}
 
 	@Override
+	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepo.findByUsername(username);
 		if (user == null)
 			throw new UsernameNotFoundException(username);
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 		for (UserRole role: user.getRoles()){
-			grantedAuthorities.add(new SimpleGrantedAuthority("USER"));
+			grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
 		}
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
 	}

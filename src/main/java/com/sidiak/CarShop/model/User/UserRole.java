@@ -2,8 +2,6 @@ package com.sidiak.CarShop.model.User;
 
 import javax.persistence.*;
 
-import java.util.Collection;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,12 +18,12 @@ public class UserRole {
     @Column
     private String name;
 
-
     public UserRole(){
 
     }
 
-    public UserRole(String name) {
+    public UserRole(Long id,String name) {
+        this.id = id;
         this.name = name;
 
     }

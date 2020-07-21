@@ -27,8 +27,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
-				.antMatchers("/edit/*", "/delete/*").hasRole("ADMIN")
-				.antMatchers("/edit/*", "/create/*").hasRole("USER")
 				.antMatchers("/", "/registration", "/login")
 				.permitAll()
 				.anyRequest()
@@ -54,11 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication()
-				.passwordEncoder(passwordEncoder())
-				.dataSource(dataSource)
-				.usersByUsernameQuery("SELECT username,password,enabled FROM appuser WHERE username = ?")
-				.authoritiesByUsernameQuery("SELECT appuser.username, role.name FROM appuser_role JOIN role ON role.id = appuser_role.roles_id JOIN appuser ON appuser.id = appuser_role.user_id WHERE appuser.username = ?");
+		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
 
 	}
 
@@ -67,11 +61,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-	@Bean
-	public DaoAuthenticationProvider authenticationProvider() {
-		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-		auth.setUserDetailsService(userService);
-		auth.setPasswordEncoder(passwordEncoder());
-		return auth;
-	}
+
+
 }
